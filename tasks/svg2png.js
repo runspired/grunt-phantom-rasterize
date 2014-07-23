@@ -13,23 +13,25 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask("svg2png", "Convert SVG to PNG", function () {
         var options = this.options({
-                scales: [1.0],
+                widths: [60],
+                svgWidth: [60]
                 subdir: "",
                 limit: Math.max(numCPUs, 2)
             }),
             output = {},
             fileIndex,
             filesLength = this.files.length,
-            scaleIndex,
-            scalesLength = options.scales.length,
-            newFileIndex;
+            widthIndex,
+            widthsLength = options.widths.length,
+            newFileIndex,
+            scale = function (w) { return w/options.svgWidth; };
 
         for (fileIndex = 0; fileIndex < filesLength; fileIndex++) {
-            for (scaleIndex = 0; scaleIndex < scalesLength; scaleIndex++) {
-                newFileIndex = this.files[fileIndex] + '_' + options.scales[scaleIndex];
+            for (widthIndex = 0; widthIndex < widthsLength; widthIndex++) {
+                newFileIndex = this.files[fileIndex] + '_' + options.widths[widthIndex];
                 output[newFileIndex] = {
                     file : this.files[fileIndex],
-                    scale : options.scales[scaleIndex]
+                    scale : scale(options.widths[widthIndex])
                 };
             }
         }
