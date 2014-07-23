@@ -52,10 +52,10 @@ grunt.initConfig({
         src: ["**/*.svg"]
       }]
     },
-    retina: {
+    ios: {
       options: {
-        scale: 2.0,
-        subdir: "png_2x",
+        widths: [57, 60], //specify multiple for each file to generate various sizes at once
+        subdir: "ios",
       },
       files: [{
         expand: true,
