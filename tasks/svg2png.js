@@ -14,7 +14,7 @@ module.exports = function (grunt) {
     grunt.registerMultiTask("svg2png", "Convert SVG to PNG", function () {
         var options = this.options({
                 widths: [60],
-                svgWidth: [60]
+                svgWidth: [60],
                 subdir: "",
                 limit: Math.max(numCPUs, 2)
             }),

@@ -19,8 +19,8 @@ describe("svg2png", function () {
 
   it("Generates 1x PNG", function () {
     var dimensions = sizeOf("test/svg/png/test.png");
-    assert(dimensions.width === 64);
-    assert(dimensions.height === 64);
+    assert(dimensions.width === 60);
+    assert(dimensions.height === 60);
   });
 
   it("Generates 2x PNG", function () {
