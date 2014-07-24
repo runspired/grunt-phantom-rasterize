@@ -1,5 +1,5 @@
 {
-  "name": "grunt-svg2png",
+  "name": "grunt-phantom-svg2png",
   "version": "0.2.0",
   "description": "Convert SVG to PNG",
   "keywords": [
