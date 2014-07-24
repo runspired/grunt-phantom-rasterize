@@ -11,7 +11,7 @@ var path = require("path"),
 function getSvgWidth(file) {
     return new RSVP.Promise(function (resolve, reject) {
         getSvgDimensions(file, function (dimensions) {
-            if (dimensions && dimensions.shouldScale) {
+            if (dimensions && dimensions.width) {
                 resolve(dimensions.width);
             } else {
                 reject(dimensions);
