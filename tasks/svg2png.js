@@ -11,7 +11,7 @@ var path = require("path"),
 
 module.exports = function (grunt) {
 
-    grunt.registerMultiTask("phantom-svg2png", "Convert SVG to PNG", function () {
+    grunt.registerMultiTask("rasterize", "Convert SVG to PNG", function () {
         var options = this.options({
                 widths: [60],
                 svgWidth: [60],
@@ -24,7 +24,10 @@ module.exports = function (grunt) {
             widthIndex,
             widthsLength = options.widths.length,
             newFileIndex,
-            scale = function (w) { return w/options.svgWidth; };
+            scale = function (w) { return w / options.svgWidth; };
+
+        grunt.log.writeln(chalk.blue('Rasterizing:') + chalk.gray(filesLength + ' files'));
+        grunt.log.writeln(chalk.blue('Expected Output:') + chalk.gray((filesLength * widthsLength) + ' files'));
 
         for (fileIndex = 0; fileIndex < filesLength; fileIndex++) {
             for (widthIndex = 0; widthIndex < widthsLength; widthIndex++) {
