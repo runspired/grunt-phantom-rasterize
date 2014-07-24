@@ -17,7 +17,6 @@ module.exports = function (grunt) {
             retina: {
                 options: {
                     widths : [128],
-                    baseWidth : [64],
                     subdir: "png_2x",
                     limit: 5
                 },
