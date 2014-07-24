@@ -1,6 +1,6 @@
 {
   "name": "grunt-phantom-svg2png",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert SVG to PNG",
   "keywords": [
     "gruntplugin",
@@ -27,20 +27,20 @@
   "dependencies": {
     "svg2png": "^1.0.1",
     "chalk": "^0.4.0",
-    "async": "^0.2.10"
+    "async": "^0.2.10",
+    "phantomjs": "^1.9.7-15",
+    "rsvp": "^3.0.9"
   },
   "devDependencies": {
     "grunt": "^0.4.2",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-simple-mocha": "^0.4.0",
-    "image-size": "^0.2.1",
-    "phantomjs": "^1.9.7-15",
-    "rsvp": "^3.0.9"
+    "image-size": "^0.2.1"
   },
   "peerDependencies": {
     "grunt": "^0.4.2"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=0.11.13"
   }
 }
