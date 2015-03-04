@@ -12,7 +12,7 @@ describe("svg2png", function () {
 
     it("Generates PNG Files", function () {
         assert(fs.existsSync("test/svg/png/test-60.png"));
-        assert(fs.existsSync("test/svg/png_2x/test-128.png"));
+        assert(fs.existsSync("test/svg/png_2x/icon@2x.png"));
     });
 
     it("Generates PNG from fallback options.", function () {
@@ -22,7 +22,7 @@ describe("svg2png", function () {
     });
 
     it("Generates PNG from specified options.", function () {
-        var dimensions = sizeOf("test/svg/png_2x/test-128.png");
+        var dimensions = sizeOf("test/svg/png_2x/icon@2x.png");
         assert(dimensions.width === 128);
         assert(dimensions.height === 128);
     });

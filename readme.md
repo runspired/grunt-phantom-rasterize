@@ -46,7 +46,7 @@ grunt.initConfig({
     },
     ios: {
       options: {
-        widths: [57, 60], //specify multiple for each file to generate various sizes at once
+        sizes: [{ width : 60, name : 'icon.png' }, { width: 120, name : 'icon@2x.png' }], //specify multiple for each file to generate various sizes at once
         subdir: "ios",
       },
       files: [{

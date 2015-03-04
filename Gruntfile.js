@@ -16,14 +16,16 @@ module.exports = function (grunt) {
             },
             retina: {
                 options: {
-                    widths : [128],
-                    subdir: "png_2x",
-                    limit: 5
+                    sizes: [{ width : 128, name : 'icon@2x.png' }],
+                    limit: 5,
+                    subdir: 'png_2x'
                 },
                 files: [{
                     expand: true,
                     cwd: "test/svg",
-                    src: ["**/*.svg"]
+                    src: ["**/*.svg"],
+                    dest : 'png_2x/',
+                    ext : '.png'
                 }]
             }
         },
