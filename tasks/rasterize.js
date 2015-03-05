@@ -68,7 +68,8 @@ module.exports = function (grunt) {
             async.eachLimit(output, options.limit, function (item, next) {
                 var rootdir = path.dirname(item.file.src);
                 var pngFileName = item.name || path.basename(item.file.src, ".svg") + '-' + item.width + ".png";
-                var dest = path.join(rootdir, self.dest || options.subdir, pngFileName);
+                var destDir = path.dirname(item.file.dest);
+                var dest = path.join(rootdir, destDir !== '.' ? destDir : options.subdir, pngFileName);
 
                 grunt.log.writeln(chalk.gray(dest) + ' ' + chalk.green(item.scale));
 

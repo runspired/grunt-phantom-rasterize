@@ -5,8 +5,8 @@ module.exports = function (grunt) {
 
         rasterize : {
             fallback: {
-                options: {
-                    subdir: "png"
+                options : {
+                    subdir : 'png'
                 },
                 files: [{
                     expand: true,
@@ -18,13 +18,25 @@ module.exports = function (grunt) {
                 options: {
                     sizes: [{ width : 128, name : 'icon@2x.png' }],
                     limit: 5,
-                    subdir: 'png_2x'
+                    subdir : 'png_2x'
                 },
                 files: [{
                     expand: true,
                     cwd: "test/svg",
                     src: ["**/*.svg"],
-                    dest : 'png_2x/',
+                    ext : '.png'
+                }]
+            },
+            nosubdir: {
+                options: {
+                    sizes: [{ width : 192, name : 'icon@3x.png' }],
+                    limit: 5
+                },
+                files: [{
+                    expand: true,
+                    cwd: "test/svg",
+                    src: ["**/*.svg"],
+                    dest : 'png_3x/',
                     ext : '.png'
                 }]
             }
@@ -37,7 +49,7 @@ module.exports = function (grunt) {
         },
 
         clean: {
-            test: ["test/svg/png", "test/svg/png_2x"]
+            test: ["test/svg/png", "test/svg/png_2x", "test/svg/png_3x"]
         }
 
     });
