@@ -1,7 +1,7 @@
 {
-  "name": "grunt-phantom-svg2png",
-  "version": "2.0.1",
-  "description": "Convert SVG to PNG",
+  "name": "grunt-rasterize",
+  "version": "1.0.0",
+  "description": "Convert an SVG to one or more named PNG files",
   "keywords": [
     "gruntplugin",
     "svg",
@@ -10,15 +10,15 @@
     "graphic",
     "image"
   ],
-  "homepage": "https://github.com/runspired/grunt-phantom-svg2png",
-  "bugs": "https://github.com/runspired/grunt-phantom-svg2png/issues",
+  "homepage": "https://github.com/runspired/grunt-rasterize",
+  "bugs": "https://github.com/runspired/grunt-rasterize/issues",
   "author": {
     "name": "Chris Thoburn",
     "url": "http://runspired.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/runspired/grunt-phantom-svg2png.git"
+    "url": "git://github.com/runspired/grunt-raserize.git"
   },
   "license": "unlicence",
   "scripts": {
@@ -35,7 +35,11 @@
     "grunt": "^0.4.2",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-simple-mocha": "^0.4.0",
-    "image-size": "^0.2.1"
+    "image-size": "^0.2.1",
+    "grunt-bump": "0.0.16",
+    "grunt-cli": "^0.1.13",
+    "jit-grunt": "^0.9.0",
+    "time-grunt": "^1.0.0"
   },
   "peerDependencies": {
     "grunt": "^0.4.2"
