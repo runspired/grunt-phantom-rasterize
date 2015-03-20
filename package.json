@@ -1,6 +1,6 @@
 {
   "name": "grunt-phantom-rasterize",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Convert an SVG to one or more named PNG files",
   "keywords": [
     "gruntplugin",
