@@ -1,6 +1,6 @@
 {
   "name": "grunt-svg2png",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Convert an SVG to one or more named PNG files",
   "keywords": [
     "gruntplugin",
