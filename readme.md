@@ -1,27 +1,25 @@
-# grunt-svg2png [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+grunt-rasterize [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+===============
 
-> Generate PNG from SVG using [svg2png](https://github.com/domenic/svg2png)
+[![npm version](https://badge.fury.io/js/grunt-rasterize.svg)](http://badge.fury.io/js/grunt-rasterize)
+[![Build Status](https://travis-ci.org/runspired/grunt-rasterize.svg?branch=master)](https://travis-ci.org/runspired/grunt-rasterize)
+[![dependencies](https://david-dm.org/runspired/grunt-rasterize.svg)](https://david-dm.org/runspired/grunt-rasterize)
+[![devDependency Status](https://david-dm.org/runspired/grunt-rasterize/dev-status.svg)](https://david-dm.org/runspired/grunt-rasterize#info=devDependencies)
 
 
-## Getting Started
+## Installation
 
 If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
 
 ```sh
-npm install --save-dev grunt-svg2png
+npm install --save-dev grunt-rasterize
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-svg2png');
+grunt.loadNpmTasks('grunt-rasterize');
 ```
-
-*Tip: the [load-grunt-tasks](https://github.com/sindresorhus/load-grunt-tasks) module makes it easier to load multiple grunt tasks.*
-
-
-[grunt]: http://gruntjs.com
-[Getting Started]: https://github.com/gruntjs/grunt/wiki/Getting-started
 
 
 ## Documentation
@@ -29,37 +27,49 @@ grunt.loadNpmTasks('grunt-svg2png');
 See the [Gruntfile](Gruntfile.js) in this repo for a full example.
 
 
-### Example config
+### Example Generating Icons for an iOS Application
 
 ```js
 grunt.initConfig({
-  svg2png: {
-    fallback: {
+
+  rasterize : {
+    ios : {
       options: {
-        subdir: "png"
+        sizes : [
+          { width : 29, name : 'Icon-Small.png' },
+          { width : 40, name : 'Icon-Small-40.png' },
+          { width : 58, name : 'Icon-Small@2x.png' },
+          { width : 76, name : 'Icon-76.png' },
+          { width : 80, name : 'Icon-Small-40@2x.png' },
+          { width : 87, name : 'Icon-Small@3x.png' },
+          { width : 120, name : 'Icon-Small-40@3x.png' },
+          { width : 120, name : 'Icon-60@2x.png' },
+          { width : 152, name : 'Icon-76@2x.png' },
+          { width : 180, name : 'Icon-60@3x.png' },
+          { width : 512, name : 'iTunes@512.png' },
+          { width : 1024, name : 'iTunes@1024.png' }
+        ]
       },
-      files: [{
-        expand: true,
-        cwd: "test/svg",
-        src: ["**/*.svg"]
-      }]
-    },
-    ios: {
-      options: {
-        sizes: [{ width : 60, name : 'icon.png' }, { width: 120, name : 'icon@2x.png' }], //specify multiple for each file to generate various sizes at once
-        subdir: "ios",
-      },
-      files: [{
-        expand: true,
-        cwd: "test/svg",
-        src: ["**/*.svg"]
-      }]
+      files: [
+        {
+          expand: true,
+          cwd: 'graphics/icons',
+          src: ['ios.svg'],
+          dest : 'ios-prod/'
+        },
+        {
+          expand: true,
+          cwd: 'graphics/icons',
+          src : ['ios-dev.svg'],
+          dest : 'ios-dev/'
+        }
+      ]
     }
   }
+
 });
 
-grunt.loadNpmTasks("grunt-svg2png");
-grunt.registerTask("default", ["svg2png"]);
+grunt.loadNpmTasks("grunt-rasterize");
 ```
 
 *Tip: the [grunt-newer](https://github.com/tschaub/grunt-newer) module might come in handy if you have a large number of files.*
