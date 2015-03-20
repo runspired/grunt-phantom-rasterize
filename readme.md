@@ -1,10 +1,10 @@
-grunt-svg2png [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+grunt-phantom-rasterize [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ===============
 
-[![npm version](https://badge.fury.io/js/grunt-svg2png.svg)](http://badge.fury.io/js/grunt-svg2png)
-[![Build Status](https://travis-ci.org/runspired/grunt-svg2png.svg?branch=master)](https://travis-ci.org/runspired/grunt-svg2png)
-[![dependencies](https://david-dm.org/runspired/grunt-svg2png.svg)](https://david-dm.org/runspired/grunt-svg2png)
-[![devDependency Status](https://david-dm.org/runspired/grunt-svg2png/dev-status.svg)](https://david-dm.org/runspired/grunt-svg2png#info=devDependencies)
+[![npm version](https://badge.fury.io/js/grunt-phantom-rasterize.svg)](http://badge.fury.io/js/grunt-phantom-rasterize)
+[![Build Status](https://travis-ci.org/runspired/grunt-phantom-rasterize.svg?branch=master)](https://travis-ci.org/runspired/grunt-phantom-rasterize)
+[![dependencies](https://david-dm.org/runspired/grunt-phantom-rasterize.svg)](https://david-dm.org/runspired/grunt-phantom-rasterize)
+[![devDependency Status](https://david-dm.org/runspired/grunt-phantom-rasterize/dev-status.svg)](https://david-dm.org/runspired/grunt-phantom-rasterize#info=devDependencies)
 
 
 ## Installation
@@ -12,13 +12,13 @@ grunt-svg2png [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http:
 If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
 
 ```sh
-npm install --save-dev grunt-svg2png
+npm install --save-dev grunt-phantom-rasterize
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-svg2png');
+grunt.loadNpmTasks('grunt-phantom-rasterize');
 ```
 
 
@@ -69,7 +69,7 @@ grunt.initConfig({
 
 });
 
-grunt.loadNpmTasks("grunt-svg2png");
+grunt.loadNpmTasks("grunt-phantom-rasterize");
 ```
 
 *Tip: the [grunt-newer](https://github.com/tschaub/grunt-newer) module might come in handy if you have a large number of files.*

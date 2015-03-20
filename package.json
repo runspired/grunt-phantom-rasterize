@@ -1,5 +1,5 @@
 {
-  "name": "grunt-svg2png",
+  "name": "grunt-phantom-rasterize",
   "version": "2.0.2",
   "description": "Convert an SVG to one or more named PNG files",
   "keywords": [
@@ -10,15 +10,15 @@
     "graphic",
     "image"
   ],
-  "homepage": "https://github.com/runspired/grunt-svg2png",
-  "bugs": "https://github.com/runspired/grunt-svg2png/issues",
+  "homepage": "https://github.com/runspired/grunt-phantom-rasterize",
+  "bugs": "https://github.com/runspired/grunt-phantom-rasterize/issues",
   "author": {
     "name": "Chris Thoburn",
     "url": "http://runspired.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/runspired/grunt-svg2png.git"
+    "url": "git://github.com/runspired/grunt-phantom-rasterize.git"
   },
   "license": "unlicence",
   "scripts": {
