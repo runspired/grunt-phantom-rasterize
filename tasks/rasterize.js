@@ -93,7 +93,7 @@ module.exports = function (grunt) {
 
       async.eachLimit(output, options.limit, function (item, next) {
 
-        item.file.src = item.file.src[0];
+        item.file.src = String(item.file.src);
         var rootdir = path.dirname(item.file.src);
         var pngFileName = item.name || path.basename(item.file.src, ".svg") + '-' + item.width + ".png";
         var destDir = path.dirname(item.file.dest);
