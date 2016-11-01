@@ -10,6 +10,7 @@
   "debug": false,
   "devel": true,
   "eqeqeq": true,
+  "esversion": 6,
   "evil": true,
   "forin": false,
   "immed": false,

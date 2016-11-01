@@ -3,10 +3,12 @@
 var path = require("path");
 var async = require("async");
 var RSVP = require('rsvp');
-var rasterize = require('svg2png');
+var svg2png = require('svg2png');
 var getSvgDimensions = require('../lib/getSvgDimensions');
 var chalk = require("chalk");
 var numCPUs = require("os").cpus().length;
+var fs = require("fs");
+var mkdirp = require("mkdirp");
 
 
 /**!
@@ -101,19 +103,25 @@ module.exports = function (grunt) {
 
         grunt.log.writeln(chalk.gray(dest) + ' ' + chalk.green(item.scale));
 
-        rasterize(item.file.src, dest, item.scale, function (err) {
+		  try {
+			  fs.readFile(item.file.src, function(err, data) {
+				  const pngBuffer = svg2png.sync(data, {
+					  width: item.width,
+					  height: item.width
+				  });
+				  mkdirp(path.dirname(dest), function(err) {
+					  if (!err) {
+						  fs.writeFile(dest, pngBuffer);
+					  }
+				  });
+			  });
+		  } catch(err) {
+			  console.log(err);
+		  }
 
-          if (err) {
-            grunt.log.error("An error occurred converting %s in %s: %s", item.file.src, dest, err);
-
-          } else {
-            grunt.log.writeln(chalk.green("✔ ") + dest + chalk.gray(" (scale:", item.scale + ")"));
-          }
-
-          next();
-        });
-
-      }, finished);
+		  grunt.log.writeln(chalk.green("✔ ") + dest + chalk.gray(" (scale:", item.scale + ")"));
+		  next();
+	  }, finished);
 
     }).catch(function (e) {
       grunt.log.error('An Error Occurred', e);

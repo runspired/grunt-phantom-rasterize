@@ -12,7 +12,7 @@ before_install:
   - "npm install -g npm@^2"
 
 install:
-  - npm install -g phantomjs
+  - npm install -g phantomjs-prebuilt
   - npm install -g grunt-cli
   - npm install
 
