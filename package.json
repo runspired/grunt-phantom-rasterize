@@ -27,8 +27,8 @@
   "dependencies": {
     "async": "~2.1",
     "chalk": "~1.1",
+    "image-size": "~0.5",
     "mkdirp": "~0.5",
-    "phantomjs-prebuilt": "~2.1",
     "pn": "~1.0",
     "rsvp": "~3.3",
     "svg2png": "~4.0"
@@ -37,7 +37,6 @@
     "grunt": "~1.0",
     "grunt-contrib-clean": "~1.0",
     "grunt-simple-mocha": "~0.4",
-    "image-size": "~0.5",
     "grunt-bump": "~0.8",
     "grunt-cli": "~1.2",
     "time-grunt": "~1.4"
