@@ -103,24 +103,21 @@ module.exports = function (grunt) {
 
         grunt.log.writeln(chalk.gray(dest) + ' ' + chalk.green(item.scale));
 
-		  try {
-			  fs.readFile(item.file.src, function(err, data) {
-				  const pngBuffer = svg2png.sync(data, {
-					  width: item.width,
-					  height: item.width
-				  });
-				  mkdirp(path.dirname(dest), function(err) {
-					  if (!err) {
-						  fs.writeFile(dest, pngBuffer);
-					  }
+		  fs.readFile(item.file.src, function(err, data) {
+			  if (err) { throw err; }
+			  const pngBuffer = svg2png.sync(data, {
+				  width: item.width,
+				  height: item.width
+			  });
+			  mkdirp(path.dirname(dest), function(err) {
+				  if (err) { throw err; }
+				  fs.writeFile(dest, pngBuffer, function(err) {
+					  if (err) { throw err; }
+					  grunt.log.writeln(chalk.green("✔ ") + dest + chalk.gray(" (scale:", item.scale + ")"));
+					  next();
 				  });
 			  });
-		  } catch(err) {
-			  console.log(err);
-		  }
-
-		  grunt.log.writeln(chalk.green("✔ ") + dest + chalk.gray(" (scale:", item.scale + ")"));
-		  next();
+		  });
 	  }, finished);
 
     }).catch(function (e) {
