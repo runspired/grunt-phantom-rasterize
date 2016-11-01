@@ -4,11 +4,20 @@ var path = require("path");
 var async = require("async");
 var RSVP = require('rsvp');
 var svg2png = require('svg2png');
-var getSvgDimensions = require('../lib/getSvgDimensions');
 var chalk = require("chalk");
 var numCPUs = require("os").cpus().length;
 var fs = require("fs");
 var mkdirp = require("mkdirp");
+const sizeOf = require('image-size');
+
+
+/**!
+ * Get the dimensions of a single SVG file
+ */
+function getSvgDimensions(sourceFileName, cb) {
+	let dimensions = sizeOf(sourceFileName[0]);
+	return cb(dimensions);
+};
 
 
 /**!
