@@ -3,10 +3,21 @@
 var path = require("path");
 var async = require("async");
 var RSVP = require('rsvp');
-var rasterize = require('svg2png');
-var getSvgDimensions = require('../lib/getSvgDimensions');
+var svg2png = require('svg2png');
 var chalk = require("chalk");
 var numCPUs = require("os").cpus().length;
+var fs = require("fs");
+var mkdirp = require("mkdirp");
+const sizeOf = require('image-size');
+
+
+/**!
+ * Get the dimensions of a single SVG file
+ */
+function getSvgDimensions(sourceFileName, cb) {
+  let dimensions = sizeOf(sourceFileName[0]);
+  return cb(dimensions);
+}
 
 
 /**!
@@ -51,10 +62,10 @@ module.exports = function (grunt) {
   grunt.registerMultiTask("rasterize", "Convert SVG to PNG", function () {
 
     var options = this.options({
-        sizes: [{ width : 60 }],
-        subdir: "",
-        limit: Math.max(numCPUs, 2)
-      });
+      sizes: [{ width : 60 }],
+      subdir: "",
+      limit: Math.max(numCPUs, 2)
+    });
     var self = this;
     var output = [];
     var fileIndex;
@@ -71,8 +82,8 @@ module.exports = function (grunt) {
 
     getSvgWidths(this.files).then(function (dimensions) {
 
-      grunt.log.writeln(chalk.blue('Rasterizing:') + chalk.gray(filesLength + ' files'));
-      grunt.log.writeln(chalk.blue('Expected Output:') + chalk.gray((filesLength * sizesLength) + ' files'));
+      grunt.log.writeln(chalk.blue('Rasterizing: ') + chalk.gray(filesLength + ' files'));
+      grunt.log.writeln(chalk.blue('Expected Output: ') + chalk.gray((filesLength * sizesLength) + ' files'));
 
       for (fileIndex = 0; fileIndex < filesLength; fileIndex++) {
 
@@ -93,26 +104,32 @@ module.exports = function (grunt) {
 
       async.eachLimit(output, options.limit, function (item, next) {
 
-        item.file.src = item.file.src[0];
-        var rootdir = path.dirname(item.file.src);
-        var pngFileName = item.name || path.basename(item.file.src, ".svg") + '-' + item.width + ".png";
+        if (item.file.src.length > 1) {
+          throw "Cannot have more than one source file per destination file/dir.";
+        }
+        var fileName = item.file.src[0];
+        var rootdir = path.dirname(fileName);
+        var pngFileName = item.name || path.basename(fileName, ".svg") + '-' + item.width + ".png";
         var destDir = path.dirname(item.file.dest);
         var dest = path.join(rootdir, destDir !== '.' ? destDir : options.subdir, pngFileName);
 
         grunt.log.writeln(chalk.gray(dest) + ' ' + chalk.green(item.scale));
 
-        rasterize(item.file.src, dest, item.scale, function (err) {
-
-          if (err) {
-            grunt.log.error("An error occurred converting %s in %s: %s", item.file.src, dest, err);
-
-          } else {
-            grunt.log.writeln(chalk.green("✔ ") + dest + chalk.gray(" (scale:", item.scale + ")"));
-          }
-
-          next();
+        fs.readFile(fileName, function(err, data) {
+          if (err) { throw err; }
+          const pngBuffer = svg2png.sync(data, {
+            width: item.width,
+            height: item.width
+          });
+          mkdirp(path.dirname(dest), function(err) {
+            if (err) { throw err; }
+            fs.writeFile(dest, pngBuffer, function(err) {
+              if (err) { throw err; }
+              grunt.log.writeln(chalk.green("✔ ") + dest + chalk.gray(" (scale:", item.scale + ")"));
+              next();
+            });
+          });
         });
-
       }, finished);
 
     }).catch(function (e) {
